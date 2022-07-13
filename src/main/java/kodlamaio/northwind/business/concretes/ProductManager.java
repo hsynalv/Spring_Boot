@@ -7,6 +7,7 @@ import kodlamaio.northwind.core.utilities.results.SuccessDataResult;
 import kodlamaio.northwind.core.utilities.results.SuccessResult;
 import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -87,5 +88,10 @@ public class ProductManager implements ProductService {
     @Override
     public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
         return new SuccessDataResult<List<Product>>("Data listelendi",productDao.getByNameAndCategory(productName,categoryId));
+    }
+
+    @Override
+    public DataResult<List<ProductWithCategoryDto>> getProductDetails() {
+        return new SuccessDataResult<List<ProductWithCategoryDto>>(productDao.getProductDetails());
     }
 }
